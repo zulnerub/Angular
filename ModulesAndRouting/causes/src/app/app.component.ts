@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { CausesService } from './causes.service';
-import { ICause } from './shared/interfaces/cause';
 
 @Component({
   selector: 'app-root',
