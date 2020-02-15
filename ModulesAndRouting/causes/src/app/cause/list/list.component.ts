@@ -4,7 +4,7 @@ import { CausesService } from 'src/app/causes.service';
 
 
 @Component({
-  selector: 'app-left',
+  selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })

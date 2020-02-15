@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { RightComponent } from './right/right.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -16,7 +15,6 @@ import { UserModule } from './user/user.module';
 @NgModule({
   declarations: [
     AppComponent,
-    RightComponent,
     HomeComponent,
     NotFoundComponent,
     LoginComponent,

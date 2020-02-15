@@ -7,7 +7,7 @@ import { CausesService } from 'src/app/causes.service';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss']
 })
-export class RightComponent implements OnInit {
+export class DetailComponent implements OnInit {
 
   @ViewChild('amountInput', { static: false }) amountInput: ElementRef<HTMLInputElement>;
 
