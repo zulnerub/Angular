@@ -21,11 +21,11 @@ export class ListComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.causesService.loadCauses();
+    this.causesService.load().subscribe();
   }
 
   selectCauseHandler(cause: ICause) {
     // this.selectCause.emit(cause);
-    this.causesService.selectedCause = cause;
+    this.causesService.selectCause(cause);
   }
 }

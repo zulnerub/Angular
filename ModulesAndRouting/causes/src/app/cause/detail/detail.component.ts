@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, Input, ElementRef } from '@angular/core';
 import { ICause } from 'src/app/shared/interfaces/cause';
 import { CausesService } from 'src/app/causes.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-detail',
@@ -28,15 +29,27 @@ export class DetailComponent implements OnInit {
 
   get selectedCause() { return this.causesService.selectedCause; }
 
-  constructor(private causesService: CausesService) { }
+  constructor(
+    private causesService: CausesService,
+    private activatedRoute: ActivatedRoute
+    ) { }
 
   ngOnInit() {
+    if(this.activatedRoute.snapshot.params.id){
+      this.causesService
+        .load(+this.activatedRoute.snapshot.params.id)
+        .subscribe(() => {
+          this.causesService
+          .selectCause(this.causesService.causes[0]);
+        })
+    } 
   }
 
   makeDonationhandler() {
-    this.causesService.donate(+this.amountInput.nativeElement.value).subscribe(() => {
-      this.causesService.loadCauses();
-      this.amountInput.nativeElement.value = '';
+    this.causesService.donate(+this.amountInput.nativeElement.value)
+        .subscribe(() => {
+            this.causesService.load();
+            this.amountInput.nativeElement.value = '';
     });
   }
 
