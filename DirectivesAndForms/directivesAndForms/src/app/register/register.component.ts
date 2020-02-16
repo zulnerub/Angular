@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { passwordMatch } from '../validators';
+
+
 
 @Component({
   selector: 'app-register',
@@ -17,12 +20,21 @@ export class RegisterComponent implements OnInit {
       ext: ['+971', [Validators.required]],
       phone: ['', [Validators.required]],
       role: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      repeatPassword: ['', [Validators.required]]
+      passwords: fb.group({
+        password: ['', [Validators.required]],
+        repeatPassword: ['', [Validators.required]]
+      }, { validators: [passwordMatch]}) //,   
+      //addresses: fb.array([fb.group({}), fb.group({})])   
     });
    }
 
   ngOnInit() {
   }
+
+  submitHandler(){
+      console.log(this.registerForm.value);
+  }
+
+  
 
 }

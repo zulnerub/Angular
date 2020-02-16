@@ -5,17 +5,20 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { PasswordMatchDirective } from './password-match.directive';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    PasswordMatchDirective
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    FormsModule,
+    AppRoutingModule,
     ReactiveFormsModule
   ],
   providers: [],

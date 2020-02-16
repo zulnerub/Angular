@@ -5,10 +5,15 @@
         <div *ngIf="emailInput.invalid && emailInput.touched">Please enter valid email!</div>
     </div>
     <div>
-        <label>Password</label>
-        <input #passwordInput="ngModel" ngModel name="password" type="password" required minlength="5">
-        <div *ngIf="passwordInput.errors.required && passwordInput.touched">Please enter a password!</div>
-        <div *ngIf="passwordInput.errors.minlength.actualLength < 5 && passwordInput.touched">Password should be atleast 6 characters!</div>
+        <div #passwordsGroup="ngModelGroup" ngModelGroup="passwords" appPasswordMatch>
+            <label>Password</label>
+            <input #passwordInput="ngModel" ngModel name="password" type="password" required minlength="6">
+            <div *ngIf="passwordInput.errors?.required && passwordInput.touched">Please enter a password!</div>
+            <div *ngIf="passwordInput.errors?.minlength?.actualLength !== 5 && passwordInput.touched">Password should be atleast 6 characters!</div>
+            <input [ngModel]="password" name="repeatPassword" type="password">
+            <div *ngIf="passwordsGroup?.errors?.passwordMatch">Match false</div>
+        </div>
+        
     </div>
     <button [disabled]="loginForm.invalid">LOGIN</button>
 

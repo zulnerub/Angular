@@ -3,7 +3,7 @@
       <div class="col-lg-4"></div>
       <div class="col-lg-4">
         <h1>Registration Form</h1>
-        <form [formGroup]="registerForm">
+        <form [formGroup]="registerForm" (ngSubmit)="submitHandler()">
           <div class="form-group input-group">
             <div class="input-group-prepend">
               <span class="input-group-text"> <i class="fa fa-user"></i> </span>
@@ -33,24 +33,28 @@
             <div class="input-group-prepend">
               <span class="input-group-text"> <i class="fa fa-building"></i> </span>
             </div>
-            <select class="form-control" [formControlName]="registerForm.get('role')">
+            <select class="form-control" [formControl]="registerForm.get('role')">
               <option value="Designer">Designer</option>
               <option value="Manager">Manager</option>
               <option value="Accounting">Accounting</option>
             </select>
           </div>
-          <div class="form-group input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+          <div formGroupName="passwords">
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+              </div>
+              <input class="form-control" placeholder="Create password" type="password" [formControl]="registerForm.get('passwords').get('password')">
             </div>
-            <input class="form-control" placeholder="Create password" type="password" [formControlName]="registerForm.get('password')">
-          </div>
-          <div class="form-group input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+            <div class="form-group input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+              </div>
+              <input class="form-control" placeholder="Repeat password" type="password" formControlName="repeatPassword">
             </div>
-            <input class="form-control" placeholder="Repeat password" type="password" formControlName="repeatPassword">
+            <div *ngIf="registerForm.get('passwords')?.errors?.passwordMatch">Passwords does not match!</div>
           </div>
+         
           <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block"> Create Account </button>
           </div>
@@ -60,3 +64,5 @@
       <div class="col-lg-4"></div>
     </div>
   </div>
+
+  {{registerForm.value | json}}
