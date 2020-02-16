@@ -14,6 +14,8 @@ export class DetailComponent implements OnInit {
 
   @Input() selectedCause2: ICause;
 
+  isRouteComponent = false;
+
   get color() {
     if (this.selectedCause.collectedAmount >= this.selectedCause.neededAmount) {
       return 'green';
@@ -32,10 +34,12 @@ export class DetailComponent implements OnInit {
   constructor(
     private causesService: CausesService,
     private activatedRoute: ActivatedRoute
-    ) { }
+    ) { 
+      this.isRouteComponent = this.activatedRoute.snapshot.data.shouldFetchCause;
+    }
 
   ngOnInit() {
-    if(this.activatedRoute.snapshot.params.id){
+    if(this.isRouteComponent){
       this.causesService
         .load(+this.activatedRoute.snapshot.params.id)
         .subscribe(() => {

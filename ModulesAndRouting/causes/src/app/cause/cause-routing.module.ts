@@ -17,7 +17,8 @@ const routes: Routes = [
             },
             {
                 path: 'detail/:id',
-                component: DetailComponent
+                component: DetailComponent,
+                data: { shouldFetchCause: true}
             }
         ]
     }
