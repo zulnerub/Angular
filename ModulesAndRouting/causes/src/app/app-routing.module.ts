@@ -3,6 +3,7 @@ import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AuthGard } from './auth.gard';
 
 const routes: Routes = [
     {
@@ -12,11 +13,19 @@ const routes: Routes = [
     },
     {
         path: 'login',
-        component: LoginComponent
+        component: LoginComponent,
+        canActivate: [AuthGard],
+        data: {
+            isLogged: false
+        }
     },
     {
         path: 'register',
-        component: RegisterComponent
+        component: RegisterComponent,
+        canActivate: [AuthGard],
+        data: {
+            isLogged: false
+        }
     },
     {
         path: '**',

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Input, ElementRef } from '@angular/core';
 import { ICause } from 'src/app/shared/interfaces/cause';
-import { CausesService } from 'src/app/causes.service';
+import { CausesService } from 'src/app/cause/causes.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

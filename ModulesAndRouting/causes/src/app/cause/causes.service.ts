@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ICause } from './shared/interfaces/cause';
+import { ICause } from '../shared/interfaces/cause';
 import { tap } from "rxjs/operators";
 
 @Injectable({
