@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
       this.form = this.fb.group({
         email: ['', [Validators.required, Validators.pattern('^([a-zA-Z0-9]){1,}([a-zA-Z0-9\.\-\_]){5,}@gmail\.com')]],
         passwords: this.fb.group({
-          password: ['', [Validators.required]],
+          password: ['', [Validators.required, Validators.minLength(6)]],
           rePassword: ['', [Validators.required]]
         }, {
           validators: [passwordMatch]

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { stringify } from 'querystring';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  currentUser: { username: string, password: string } = null;
+  currentUser: { email: string, password: string } = null;
 
   get isLogged(){
     return !!this.currentUser;
@@ -16,9 +17,9 @@ export class UserService {
     this.currentUser = currentUser ? JSON.parse(currentUser) : null;
    }
 
-  login(username: string, password: string){
-    localStorage.setItem('current-user', JSON.stringify({username, password}));
-    this.currentUser = { username, password };
+  login(email: string, password: string) {
+    localStorage.setItem('current-user', JSON.stringify({email, password}));
+    this.currentUser = { email, password };
   }
 
   logout(){
