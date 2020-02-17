@@ -1,20 +1,26 @@
 <div class="col-md-4"></div>
-            <div class="col-md-4">
-                <h1 class="text-italic">Register</h1>
-                <form action="">
-                    <div class="form-group">
-                        <label for="email">Email address</label>
-                        <input type="text" id="email" class="form-control" placeholder="john.doe@domain.bg">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" class="form-control" placeholder="************">
-                    </div>
-                    <div class="form-group">
-                        <label for="rePassword">Re-Password</label>
-                        <input type="password" id="rePassword" class="form-control" placeholder="************">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Register</button>
-                </form>
-                <p>Already Registered? <a routerLink="/user/login">Login</a>.</p>
+<div class="col-md-4">
+    <h1 class="text-italic">Register</h1>
+    <form #registerForm="ngForm">
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input #emailInput="ngModel" type="text" ngModel required name="email" id="email" class="form-control" placeholder="john.doe@domain.bg"
+                pattern="^([a-zA-Z0-9]){1,}([a-zA-Z0-9\.\-\_]){5,}@gmail\.com">
+            <p class="error-message" *ngIf="emailInput?.invalid && emailInput?.touched">Please enter a valid email!</p>
+        </div>
+        <div #passwordsGroup="ngModelGroup" ngModelGroup="passwords" appPasswordMatch>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input #password="ngModel" ngModel type="password" name="password" id="password" class="form-control" placeholder="************" required minlength="6">
+                <p class="error-message" *ngIf="password.invalid && password.touched">Password must be atleast 6 characters long!</p>
             </div>
+            <div class="form-group">
+                <label for="rePassword">Re-Password</label>
+                <input #rePassword="ngModel" ngModel type="password" name="rePassword" id="rePassword" class="form-control" placeholder="************" required>
+            </div>
+            <p class="error-message" *ngIf="passwordsGroup.touched && passwordsGroup.invalid && password.valid">Passwords does not match!</p>
+       </div>
+       <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+    <p>Already Registered? <a routerLink="/user/login">Login</a>.</p>
+</div>

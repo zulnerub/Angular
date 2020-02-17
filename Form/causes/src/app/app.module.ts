@@ -11,6 +11,9 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { CauseModule } from './cause/cause.module';
 import { UserModule } from './user/user.module';
+import { FormsModule } from "@angular/forms";
+import { PasswordMatchDirective } from './shared/validators/directives/password-match.directive';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -24,10 +27,12 @@ import { UserModule } from './user/user.module';
   imports: [
     BrowserModule,
     CoreModule,
+    SharedModule,
     HttpClientModule,
     AppRoutingModule,
     CauseModule,
-    UserModule
+    UserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

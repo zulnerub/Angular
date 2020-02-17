@@ -5,9 +5,11 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss', '../../error-styles.scss']
 })
 export class LoginComponent implements OnInit {
+
+    emailRegex = new RegExp('^([a-zA-Z0-9]){1,}([a-zA-Z0-9\.\-\_]){5,}@gmail\.com')
 
   constructor(
     private userService: UserService,
@@ -17,7 +19,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(username: string, password: string){
+  handleLogin(username: string, password: string){
     this.userService.login(username, password);
     this.router.navigate(['']);
   }

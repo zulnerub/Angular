@@ -1,0 +1,19 @@
+
+
+p.error-message {
+    color: red;
+    font-style: italic;
+}
+
+.ng-invalid.ng-touched {
+    input.ng-touched {
+        border-color: red;
+    }
+}
+
+.ng-valid.ng-touched {
+    input.ng-touched {
+        border-color: green;
+    }
+}
+
