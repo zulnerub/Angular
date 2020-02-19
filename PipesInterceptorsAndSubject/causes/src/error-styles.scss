@@ -1,0 +1,22 @@
+
+
+p.error-message {
+    color: red;
+    font-style: italic;
+}
+
+p.passed-message {
+    color: green;
+    font-style: italic;
+}
+
+.ng-invalid.ng-touched {
+    border-color: red;
+}
+
+.ng-valid.ng-touched{
+    border-color: green;
+}
+
+
+
