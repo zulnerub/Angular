@@ -1,29 +1,37 @@
 import { Injectable } from '@angular/core';
-import { stringify } from 'querystring';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  currentUser: { email: string, password: string } = null;
+  currentUser: { email: string, password: string };
 
   get isLogged(){
     return !!this.currentUser;
   }
 
-  constructor() {
-    const currentUser =  localStorage.getItem('current-user');
-    this.currentUser = currentUser ? JSON.parse(currentUser) : null;
+  constructor(private http: HttpClient) {
+
+    this.http.get('auth').subscribe((user: any) => {
+      this.currentUser = user;
+    }, () => {
+      this.currentUser = null;
+    });
    }
 
   login(email: string, password: string) {
-    localStorage.setItem('current-user', JSON.stringify({email, password}));
-    this.currentUser = { email, password };
+    return this.http.post('user/login', { email, password });
   }
+  
+  register(email: string, password: string) {
+    return this.http.post('user/register', { email, password });
+  }
+      
+  
 
   logout(){
-    this.currentUser = null;
-    localStorage.removeItem('current-user');
+    return this.http.post('user/logout', {}, { withCredentials: true });
   }
 }

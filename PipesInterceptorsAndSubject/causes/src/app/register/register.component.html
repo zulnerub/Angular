@@ -1,7 +1,7 @@
 <div class="col-md-4"></div>
 <div class="col-md-4">
     <h1 class="text-italic">Register</h1>
-    <form #registerForm="ngForm">
+    <form #registerForm="ngForm" (ngSubmit)="handleSubmit(registerForm.value)">
         <div class="form-group">
             <label for="email">Email address</label>
             <input #emailInput="ngModel" type="text" ngModel required name="email" id="email" class="form-control" placeholder="john.doe@domain.bg"
