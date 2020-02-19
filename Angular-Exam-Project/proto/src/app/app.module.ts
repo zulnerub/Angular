@@ -3,28 +3,39 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RecipeComponent } from './recipe/recipe.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { HeaderComponent } from './main/header/header.component';
-import { FooterComponent } from './main/footer/footer.component';
-import { HomeComponent } from './main/home/home.component';
+import { MainModule } from './main/main.module';
+import { SharedModule } from './shared/shared.module';
+import { RecipeModule } from './recipe/recipe.module';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { UserModule } from './user/user.module';
+import { FormsModule } from '@angular/forms';
+import { AppInterceptor } from './app-interceptor';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    RecipeComponent,
     LoginComponent,
-    RegisterComponent,
-    HeaderComponent,
-    FooterComponent,
-    HomeComponent
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MainModule,
+    SharedModule,
+    RecipeModule,
+    HttpClientModule,
+    AppRoutingModule,
+    UserModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AppInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

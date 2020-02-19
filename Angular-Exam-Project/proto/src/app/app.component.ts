@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from './user/user.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'proto';
+  get isReady(): boolean {
+    return this.actualUserService.currentUser !== undefined;
+  }
+
+  constructor(
+    private actualUserService: UserService
+  ){
+    
+  }
 }

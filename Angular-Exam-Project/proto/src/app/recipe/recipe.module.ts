@@ -2,23 +2,21 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CreateComponent } from './create/create.component';
 import { DetailComponent } from './detail/detail.component';
-import { CauseRoutingModule } from './cause-routing.module';
 import { ListComponent } from './list/list.component';
+import { RecipeRoutingModule } from './recipe-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CanDonatePipe } from './can-donate.pipe';
 
 
 
 @NgModule({
   declarations: [
-    CreateComponent,
-    DetailComponent, 
-    ListComponent, 
-    CanDonatePipe
+    CreateComponent, 
+    DetailComponent,
+    ListComponent
   ],
   imports: [
     CommonModule,
-    CauseRoutingModule,
+    RecipeRoutingModule,
     ReactiveFormsModule
   ],
   exports: [
@@ -26,4 +24,4 @@ import { CanDonatePipe } from './can-donate.pipe';
     DetailComponent
   ]
 })
-export class CauseModule { }
+export class RecipeModule { }

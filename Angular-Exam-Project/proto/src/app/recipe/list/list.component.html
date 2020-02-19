@@ -1,0 +1,20 @@
+
+<div class="col-lg-10" *ngIf="recipe">
+    <a *ngFor="let recipe of recipes" (click)="selectRecipeHandler(recipe)" 
+        class="list-group-item clearfix mask rgba-white-slight">
+        <div class="card card-cascade narrower">
+            <!-- Card image -->
+            <div class="view view-cascade overlay">
+                <img class="card-img-top" src={{recipe.imgUrl}}alt="Card image cap">      
+            </div>
+            <!-- Card content -->
+            <div class="card-body card-body-cascade">
+                <h5 class="pink-text pb-2 pt-1"><i class="fas fa-utensils"></i> {{rezice.category}}</h5>
+                <h4 class="font-weight-bold card-title">{{recipe.name}}</h4>
+                <p class="card-text">{{recipe.summary}}</p>
+                <!--<a class="btn btn-unique">Button</a>-->
+            </div>
+        </div>
+    </a>
+</div>
+

@@ -12,7 +12,6 @@ import { RegisterComponent } from './register/register.component';
 import { CauseModule } from './cause/cause.module';
 import { UserModule } from './user/user.module';
 import { FormsModule } from "@angular/forms";
-import { PasswordMatchDirective } from './shared/validators/directives/password-match.directive';
 import { SharedModule } from './shared/shared.module';
 import { AppInterceptor } from './app-interceptor';
 

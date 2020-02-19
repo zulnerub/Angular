@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { tap, shareReplay } from 'rxjs/operators';
+import { HttpClient } from "@angular/common/http";
 import { IUser } from '../shared/interfaces/user';
+import { tap, shareReplay } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -14,30 +14,28 @@ export class UserService {
     return !!this.currentUser;
   }
 
-  authCompleted$ = this.http.get('auth').pipe(shareReplay(1));
+  authenticated$ = this.http.get('auth').pipe(shareReplay(1));
 
   constructor(
     private http: HttpClient
-    ) {
-    this.authCompleted$.subscribe((user: any) => {
+  ) { 
+    this.authenticated$.subscribe((user: any) => {
       this.currentUser = user;
     }, () => {
       this.currentUser = null;
     });
-   }
+  }
 
-  login(email: string, password: string) {
+  login(email: string, password: string){
     return this.http.post('user/login', { email, password })
     .pipe(tap((user: any) => {
       this.currentUser = user;
     }));
   }
-  
+
   register(email: string, password: string) {
     return this.http.post('user/register', { email, password });
   }
-      
-  
 
   logout(){
     return this.http.post('user/logout', {}).pipe(tap(() => {
