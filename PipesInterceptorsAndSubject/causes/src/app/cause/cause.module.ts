@@ -5,6 +5,7 @@ import { DetailComponent } from './detail/detail.component';
 import { CauseRoutingModule } from './cause-routing.module';
 import { ListComponent } from './list/list.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CanDonatePipe } from './can-donate.pipe';
 
 
 
@@ -12,7 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     CreateComponent,
     DetailComponent, 
-    ListComponent
+    ListComponent, CanDonatePipe
   ],
   imports: [
     CommonModule,

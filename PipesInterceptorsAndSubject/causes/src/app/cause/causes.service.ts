@@ -13,17 +13,26 @@ export class CausesService {
 
   constructor(private http: HttpClient) { }
 
-  load(id?: number) {
+  load(id?: string) {
     return this.http.get<ICause[]>(`causes${id ? `/${id}` : '' }`)
     .pipe(
-      tap((causes) => this.causes = [].concat(causes))
+      tap((causes) => {
+        this.causes = [].concat(causes);
+        if (id) {
+          (this as any).selectCause = causes[0];
+        }else {
+          this.causes = [].concat(causes);
+        }
+      })
     );
   }
 
-  donate(amount: number) {
-    return this.http.put<ICause>(`causes/${this.selectedCause.id}`, {
-      body: { collectedAmount: this.selectedCause.collectedAmount + amount }
-    });
+  create(cause: any){
+    return this.http.post<ICause>('causes', cause);
+  }
+
+  donate(donatedAmount: number) {
+    return this.http.put<ICause>(`causes/${this.selectedCause.id}`, { donatedAmount });
   }
 
   selectCause(cause: ICause) {

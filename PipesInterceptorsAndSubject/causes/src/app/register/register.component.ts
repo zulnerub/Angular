@@ -9,15 +9,17 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private userService: UserService,
-    private router: Router) { }
+  constructor(
+    private userService: UserService,
+    private router: Router
+    ) { }
 
   ngOnInit() {
   }
 
   handleSubmit({email, passwords: { password }}: {email: string, passwords: { password: string } }){
     this.userService.login(email, password).subscribe(() => {
-          this.router.navigate(['login']);
+          this.router.navigate(['']);
     }, console.error);
   }
 

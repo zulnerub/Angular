@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
+import { IUser } from '../shared/interfaces/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  currentUser: { email: string, password: string };
+  currentUser: IUser;
 
   get isLogged(){
     return !!this.currentUser;
@@ -23,7 +24,8 @@ export class UserService {
    }
 
   login(email: string, password: string) {
-    return this.http.post('user/login', { email, password }).pipe(tap((user: any) => {
+    return this.http.post('user/login', { email, password })
+    .pipe(tap((user: any) => {
       this.currentUser = user;
     }));
   }
