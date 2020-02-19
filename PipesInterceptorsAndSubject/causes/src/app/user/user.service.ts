@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,9 @@ export class UserService {
    }
 
   login(email: string, password: string) {
-    return this.http.post('user/login', { email, password });
+    return this.http.post('user/login', { email, password }).pipe(tap((user: any) => {
+      this.currentUser = user;
+    }));
   }
   
   register(email: string, password: string) {
@@ -32,6 +35,8 @@ export class UserService {
   
 
   logout(){
-    return this.http.post('user/logout', {}, { withCredentials: true });
+    return this.http.post('user/logout', {}).pipe(tap(() => {
+      this.currentUser = null;
+    }));
   }
 }

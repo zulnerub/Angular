@@ -16,7 +16,7 @@
             </p>
         </div>
 
-        <button class="btn btn-success" >Login</button>
+        <button [disabled]="loginForm.invalid" class="btn btn-success" >Login</button>
     </form>
     <p>Don't have account yet? <a routerLink="/user/register">Register</a>.</p>
 </div>

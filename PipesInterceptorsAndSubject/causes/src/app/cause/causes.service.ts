@@ -14,14 +14,14 @@ export class CausesService {
   constructor(private http: HttpClient) { }
 
   load(id?: number) {
-    return this.http.get<ICause[]>(`http://localhost:3000/causes${id ? `/${id}` : '' }`)
+    return this.http.get<ICause[]>(`causes${id ? `/${id}` : '' }`)
     .pipe(
       tap((causes) => this.causes = [].concat(causes))
     );
   }
 
   donate(amount: number) {
-    return this.http.put<ICause>(`http://localhost:3000/causes/${this.selectedCause.id}`, {
+    return this.http.put<ICause>(`causes/${this.selectedCause.id}`, {
       body: { collectedAmount: this.selectedCause.collectedAmount + amount }
     });
   }
