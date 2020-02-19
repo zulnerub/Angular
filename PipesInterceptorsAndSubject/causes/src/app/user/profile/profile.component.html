@@ -39,29 +39,24 @@
         <div class="panel-footer">
             <div class="panel panel-default">
                 <div class="panel-body panel-primary">
-                    My own causes: [3]
+                    My own causes: [{{myCauses.length}}]
                 </div>
 
                 <div class="panel-footer">
                     <ul class="list-group">
-                        <li class="list-group-item"><a routerLink="/cause/0">First Cause</a></li>
-                        <li class="list-group-item"><a routerLink="/cause/1">Second Cause</a></li>
-                        <li class="list-group-item"><a routerLink="/cause/2">Third Cause</a></li>
+                        <li *ngFor="let cause of myCauses" class="list-group-item"><a [routerLink]="['/cause', 'detail', cause.id]">{{cause.cause}}</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="panel panel-default">
                 <div class="panel-body panel-primary">
-                    Causes I have contributed to: [3]
+                    Causes I have contributed to: [{{contributedCauses.length}}]
                 </div>
 
                 <div class="panel-footer">
                     <ul class="list-group">
-                        <li class="list-group-item"><a routerLink="/cause/5e1ef99652de0e99f5f93fff">First
-                                Cause</a></li>
-                        <li class="list-group-item"><a routerLink="/cause/1">Second Cause</a></li>
-                        <li class="list-group-item"><a routerLink="/cause/2">Third Cause</a></li>
+                    <li *ngFor="let cause of contributedCauses" class="list-group-item"><a [routerLink]="['/cause', 'detail', cause.id]">{{cause.cause}}</a></li>
                     </ul>
                 </div>
             </div>

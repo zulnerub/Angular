@@ -3,6 +3,8 @@ import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { passwordMatch } from 'src/app/shared/validators/password-match';
+import { CausesService } from 'src/app/cause/causes.service';
+import { ICause } from 'src/app/shared/interfaces/cause';
 
 @Component({
   selector: 'app-profile',
@@ -12,6 +14,8 @@ import { passwordMatch } from 'src/app/shared/validators/password-match';
 export class ProfileComponent implements OnInit {
 
   form: FormGroup;
+  myCauses: ICause[];
+  contributedCauses: ICause[];
 
   get currentUser(){
     return this.userService.currentUser;
@@ -19,6 +23,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private userService: UserService,
+    private causeService: CausesService,
     private router: Router,
     private fb: FormBuilder
     ) { 
@@ -34,6 +39,10 @@ export class ProfileComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.causeService.load().subscribe((causes: ICause[]) => {
+      this.myCauses = causes.filter(c => c.author._id === this.userService.currentUser._id);
+      this.contributedCauses = this.userService.currentUser.donatedTo;
+    });
   }
 
   logout(){

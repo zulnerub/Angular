@@ -14,10 +14,8 @@ export class CausesService {
   constructor(private http: HttpClient) { }
 
   load(id?: string) {
-    return this.http.get<ICause[]>(`causes${id ? `/${id}` : '' }`)
-    .pipe(
+    return this.http.get<ICause[] | ICause>(`causes${id ? `/${id}` : '' }`).pipe(
       tap((causes) => {
-        this.causes = [].concat(causes);
         if (id) {
           (this as any).selectCause = causes[0];
         }else {
