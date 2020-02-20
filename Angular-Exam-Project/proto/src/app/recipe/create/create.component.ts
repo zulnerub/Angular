@@ -36,7 +36,7 @@ export class CreateComponent implements OnInit {
 
   handleCreateRecipe (){
     this.form.value.authorId = this.author.uid;
-    this.recipeService.create(this.form.value);
+    this.recipeService.createRecipe(this.form.value);
     this.router.navigate(['recipes/create'])    ;
   }
 

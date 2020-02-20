@@ -10,29 +10,28 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class DetailComponent implements OnInit {
 
-  @ViewChild('amountInput', { static: false }) amountInput: ElementRef<HTMLInputElement>;
-
   @Input() selectedRecipe2: IRecipe;
 
-  isRouteComponent = false;
+  isRouteComponent = true;
 
-  get selectedRecipe() { return this.recipesService.selectedRecipe; }
+  get selectedRecipe() { 
+    return this.recipeService.selectedRecipe; 
+  }
 
   constructor(
-    private recipesService: RecipeService,
+    private recipeService: RecipeService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
     ) { 
-      this.isRouteComponent = this.activatedRoute.snapshot.data.shouldFetchCause;
+      this.isRouteComponent = this.activatedRoute.snapshot.data.shouldGetRecipe;
     }
 
   ngOnInit() {
+    console.log(this.activatedRoute.snapshot.params.id);
+    
     if(this.isRouteComponent){
-    //  this.recipesService
-    //    .load(this.activatedRoute.snapshot.params.id)
-    //    .subscribe(() => {
-    //    // tuka ima problem !!
-    //  })
+      this.recipeService
+        .getRecipeDetails(this.activatedRoute.snapshot.params.id)
+        
     } 
   }
 

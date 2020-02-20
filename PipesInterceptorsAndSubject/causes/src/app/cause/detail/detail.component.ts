@@ -44,7 +44,7 @@ export class DetailComponent implements OnInit {
       this.causesService
         .load(this.activatedRoute.snapshot.params.id)
         .subscribe(() => {
-        // tuka ima problem !!
+        // 
       })
     } 
   }

@@ -10,22 +10,51 @@ import { RecipeService } from '../recipe.service';
 })
 export class ListComponent implements OnInit {
 
-  allRecipes;
-
   get recipes(){
-    return this.recipeService.recipes;
+   return this.recipeService.recipes;
   }
 
-  @Output() selectRecipe: EventEmitter<IRecipe> = new EventEmitter();
+  allRecipes: IRecipe[];
 
-  constructor(private recipeService: RecipeService) { }
+  constructor(
+    private recipeService: RecipeService
+    ) { }
 
   ngOnInit() {
-    this.recipeService.load().subscribe(res => this.allRecipes = res);
+    
+    this.getAllRecipes();
   }
 
-  selectRecipeHandler(recipe: IRecipe){
-    this.recipeService.selectRecipe(recipe);
+
+  getAllRecipes(){
+     this.recipeService.getRecipes().subscribe(data => {
+      this.allRecipes = data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          authorId: e.payload.doc.data()["authorId"],
+          category: e.payload.doc.data()["category"],
+          imgUrlRecipe: e.payload.doc.data()["imgUrlRecipe"],
+          summary: e.payload.doc.data()["summary"],
+          title: e.payload.doc.data()["title"]                
+       } as IRecipe;
+      })
+    });
+  }
+
+  selectRecipeDetail(recipe: IRecipe){
+    return this.recipeService.selectRecipe(recipe);
+  }
+ 
+  create(recipe: IRecipe){
+      this.recipeService.createRecipe(recipe);
+  }
+
+  update(recipe: IRecipe) {
+    this.recipeService.updateRecipe(recipe);
+  }
+
+  delete(id: string) {
+    this.recipeService.deleteRecipe(id);
   }
 
 }

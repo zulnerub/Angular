@@ -19,7 +19,7 @@ const routes: Routes = [
                 canActivate: [AuthGard]
             },
             {
-                path: 'detail/:id',
+                path: 'details/:id',
                 component: DetailComponent,
                 canActivate: [AuthGard],
                 data: {

@@ -1,6 +1,13 @@
 
 
-<div class="col-md-10">
+<div class="col-md-6">
+
     <app-list (selectRecipe)="selectRecipeHandler($event)"></app-list>
 
 </div>
+
+<div class="col-md-6">
+    <app-detail [selectedRecipe2]="selectedRecipe"></app-detail>
+</div>
+
+

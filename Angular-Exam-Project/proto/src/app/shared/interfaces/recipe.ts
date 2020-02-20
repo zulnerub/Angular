@@ -5,6 +5,6 @@ export interface IRecipe {
     category: string;
     title: string;
     summary: string;
-    imgUrl: string;
+    imgUrlRecipe: string;
     authorId: string;
 }

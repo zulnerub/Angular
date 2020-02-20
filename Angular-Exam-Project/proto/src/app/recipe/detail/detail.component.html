@@ -7,7 +7,7 @@
         </div>
         <div class="row">
           <div class="col-xs-12">
-            <img [src]="selectedRecipe.imgUrl" alt="" class="img-responsive img-details">
+            <img [src]="selectedRecipe.imgUrlRecipe" alt="" class="img-responsive img-details">
           </div>
         </div>
         <hr>
@@ -40,5 +40,3 @@
         </div>
         <hr>
       </div>
-      <div *ngIf="!selectedRecipe && !isRouteComponent">Please select recipr!</div>
-      <div *ngIf="!selectedRecipe && isRouteComponent">Recipe does not exist!</div>
