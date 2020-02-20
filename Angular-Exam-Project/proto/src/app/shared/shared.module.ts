@@ -6,7 +6,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 
 @NgModule({
-  declarations: [PasswordMatcherDirective, NotFoundComponent],
+  declarations: [
+    PasswordMatcherDirective,
+    NotFoundComponent],
   imports: [
     CommonModule
   ],

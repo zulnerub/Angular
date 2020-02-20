@@ -8,7 +8,7 @@ import { UserService } from './user/user.service';
 })
 export class AppComponent {
   get isReady(): boolean {
-    return this.actualUserService.currentUser !== undefined;
+    return this.actualUserService.userData !== undefined;
   }
 
   constructor(

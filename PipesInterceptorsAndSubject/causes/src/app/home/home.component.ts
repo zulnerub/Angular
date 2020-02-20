@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ICause } from '../shared/interfaces/cause';
 
 @Component({

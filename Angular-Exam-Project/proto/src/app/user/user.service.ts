@@ -1,45 +1,82 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
 import { IUser } from '../shared/interfaces/user';
-import { tap, shareReplay } from "rxjs/operators";
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  currentUser: IUser;
+  userData: IUser;
 
-  get isLogged(){
-    return !!this.currentUser;
+
+  get isLogged(): boolean {
+    const user = JSON.parse(localStorage.getItem('user'));
+    return user !== null ? true : false;
   }
-
-  authenticated$ = this.http.get('auth').pipe(shareReplay(1));
 
   constructor(
-    private http: HttpClient
+    private angularFirestore: AngularFirestore,
+    private angularFireAuth: AngularFireAuth,
+    private router: Router
   ) { 
-    this.authenticated$.subscribe((user: any) => {
-      this.currentUser = user;
-    }, () => {
-      this.currentUser = null;
-    });
+    this.angularFireAuth.authState.subscribe((user: any) => {
+      if(user){
+        this.userData = user;
+        localStorage.setItem('user', JSON.stringify(this.userData));
+        JSON.parse(localStorage.getItem('user'));
+      }else{
+        localStorage.setItem('user', null);
+        JSON.parse(localStorage.getItem('user'));
+        this.userData = null;
+      }
+    })
   }
 
-  login(email: string, password: string){
-    return this.http.post('user/login', { email, password })
-    .pipe(tap((user: any) => {
-      this.currentUser = user;
-    }));
+  SignIn(email: string, password: string) {
+    return this.angularFireAuth.auth.signInWithEmailAndPassword(email, password)
+      .then((result) => {
+        this.router.navigate(['']);
+      }).catch((error) => {
+        window.alert(error.message)
+      })
   }
 
-  register(email: string, password: string) {
-    return this.http.post('user/register', { email, password });
+  SignUp(email: string, password: string) {
+    return this.angularFireAuth.auth.createUserWithEmailAndPassword(email, password)
+      .then((result) => {
+        this.router.navigate(['']);
+        this.SetUserData(result.user);
+      }).catch((error) => {
+        window.alert(error.message)
+      })
   }
 
-  logout(){
-    return this.http.post('user/logout', {}).pipe(tap(() => {
-      this.currentUser = null;
-    }));
+  SignOut() {
+    return this.angularFireAuth.auth.signOut().then(() => {
+      localStorage.removeItem('user');
+      this.router.navigate(['login']);
+    })
   }
+ 
+  SetUserData(user) {
+    const userRef: AngularFirestoreDocument<any> = this.angularFirestore.doc(`users/${user.uid}`);
+    console.log(JSON.stringify(user));
+    
+    const userData: IUser = {
+      id: user.localId,
+      email: user.email,
+      idToken: user.idToken,
+      photoUrl: user.photoUrl
+    }
+    console.log(userData);
+    
+    return userRef.set(userData, {
+      merge: true
+    })
+  }
+
+
 }

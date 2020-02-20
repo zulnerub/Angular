@@ -1,1 +1,43 @@
-<p>register works!</p>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Sign Up</h5>
+
+
+            <form class="form-signin" #registerForm="ngForm" (ngSubmit)="handleRegister(registerForm.value)">
+
+              <div class="form-label-group">
+                <input #emailInput="ngModel" ngModel name="email" type="text" id="еmail" class="form-control" placeholder="Email address" [pattern]="emailRegex" required autofocus>
+
+                <label for="inputEmail">Email address</label>
+              </div>
+
+              <div #passwordsGroup="ngModelGroup" ngModelGroup="passwords" appPasswordMatch>
+
+              <div class="form-label-group">
+                <input #passwordInput="ngModel" ngModel name="password" type="password" id="password" class="form-control" placeholder="Password"  required>
+                <label for="inputPassword">Password</label>
+              </div>
+
+              <div class="form-label-group">
+                <input #rePasswordInput="ngModel" ngModel name="rePassword" type="password" id="rePassword" class="form-control" placeholder="Retype password"  required>
+                <label for="inputPassword">Password</label>
+              </div>
+
+              </div>
+            
+
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" >Sign up</button>
+
+              <hr class="my-4">
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

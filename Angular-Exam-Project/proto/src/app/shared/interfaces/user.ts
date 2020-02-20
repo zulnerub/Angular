@@ -1,6 +1,6 @@
 export interface IUser {
-    id: string;
-    email: string;
-    password: string;
-    //likes - donatedTo....
+      id: string;
+      email: string;
+      idToken: string
+      photoUrl: boolean;
 }

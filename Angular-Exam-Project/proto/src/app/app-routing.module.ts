@@ -1,9 +1,11 @@
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './main/home/home.component';
+
+import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { AuthGard } from './shared/validators/auth.gard';
 import { RegisterComponent } from './register/register.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
+
+import { LoggedUserGuard } from './shared/validators/logged-user.guard';
 
 
 const routes: Routes = [
@@ -15,18 +17,12 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    canActivate: [AuthGard],
-    data: {
-      isLogged: false
-    }
+    canActivate: [LoggedUserGuard]
   },
   {
     path: 'register',
     component: RegisterComponent,
-    canActivate: [AuthGard],
-    data: {
-      isLogged: false
-    }
+    canActivate: [LoggedUserGuard]
   },
   {
     path: '**',

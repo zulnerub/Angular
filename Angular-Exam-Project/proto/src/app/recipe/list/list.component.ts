@@ -10,6 +10,8 @@ import { RecipeService } from '../recipe.service';
 })
 export class ListComponent implements OnInit {
 
+  allRecipes;
+
   get recipes(){
     return this.recipeService.recipes;
   }
@@ -19,7 +21,7 @@ export class ListComponent implements OnInit {
   constructor(private recipeService: RecipeService) { }
 
   ngOnInit() {
-    this.recipeService.load().subscribe();
+    this.recipeService.load().subscribe(res => this.allRecipes = res);
   }
 
   selectRecipeHandler(recipe: IRecipe){

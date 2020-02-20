@@ -6,5 +6,5 @@ export interface IRecipe {
     title: string;
     summary: string;
     imgUrl: string;
-    author: IUser;
+    authorId: string;
 }
