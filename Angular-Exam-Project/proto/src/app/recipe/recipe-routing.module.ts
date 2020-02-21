@@ -2,6 +2,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { CreateComponent } from './create/create.component';
 import { DetailComponent } from './detail/detail.component';
 import { AuthGard } from '../shared/validators/auth.guard';
+import { UpdateComponent } from './update/update.component';
 
 
 const routes: Routes = [
@@ -21,11 +22,12 @@ const routes: Routes = [
             {
                 path: 'details/:id',
                 component: DetailComponent,
-                canActivate: [AuthGard],
-                data: {
-                    shouldGetRecipe: true,
-                    isLogged: true
-                }
+                canActivate: [AuthGard]
+            },
+            {
+                path: 'update/:id',
+                component: UpdateComponent,
+                canActivate: [AuthGard]
             }
         ]
     }

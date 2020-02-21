@@ -2,6 +2,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { UserComponent } from './user/user.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGard } from '../shared/validators/auth.guard';
+import { DetailComponent } from '../recipe/detail/detail.component';
 
 const routes: Routes = [
     {
@@ -10,7 +11,8 @@ const routes: Routes = [
             {
                 path: '',
                 pathMatch: 'full',
-                component: UserComponent
+                component: UserComponent,
+                canActivate: [AuthGard]
             },
             {
                 path: 'profile',

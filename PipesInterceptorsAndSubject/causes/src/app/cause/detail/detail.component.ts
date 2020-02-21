@@ -12,10 +12,10 @@ export class DetailComponent implements OnInit {
 
   @ViewChild('amountInput', { static: false }) amountInput: ElementRef<HTMLInputElement>;
 
-  @Input() selectedCause2: ICause;
+  //Input() selectedCause2: ICause;
 
   isRouteComponent = false;
-
+//
   get color() {
     if (this.selectedCause.collectedAmount >= this.selectedCause.neededAmount) {
       return 'green';
@@ -28,7 +28,7 @@ export class DetailComponent implements OnInit {
     }
     return 'red';
   }
-
+//
   get selectedCause() { return this.causesService.selectedCause; }
 
   constructor(

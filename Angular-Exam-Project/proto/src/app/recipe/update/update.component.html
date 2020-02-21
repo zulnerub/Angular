@@ -1,0 +1,43 @@
+<body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+          <div class="card card-signin my-5">
+            <div class="card-body">
+              <h5 class="card-title text-center">Sign Up</h5>
+  
+  
+              <form class="form-signin" [formGroup]="form"  (ngSubmit)="handleUpdateRecipe()">
+                
+                <div class="form-label-group">
+                    <label for="category">Enter recipe category:</label>
+                    <input formControlName="category"  type="text" id="category" class="form-control" placeholder="Recipe Category" required autofocus>
+                </div>
+
+                <div class="form-label-group">
+                    <label for="title">Enter recipe title:</label>
+                    <input formControlName="title"  type="text" id="title" class="form-control" placeholder="Recipe title" required autofocus>
+                </div>
+
+                <div class="form-label-group">
+                    <label for="summary">Enter recipe summary:</label>
+                    <input formControlName="summary"  type="text" id="summary" class="form-control" placeholder="Recipe summary" required autofocus>
+                </div>
+
+                <div class="form-label-group">
+                    <label for="title">Enter image address:</label>
+                    <input formControlName="imgUrlRecipe"  type="text" id="imgUrlRecipe" class="form-control" placeholder="Recipe image address" required autofocus>
+                </div> 
+              
+  
+                <button class="btn btn-lg btn-primary btn-block text-uppercase" >Update Recipe</button>
+  
+                <hr class="my-4">
+              </form>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>

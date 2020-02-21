@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { IRecipe } from 'src/app/shared/interfaces/recipe';
 import { RecipeService } from '../recipe.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-detail',
@@ -10,9 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class DetailComponent implements OnInit {
 
-  @Input() selectedRecipe2: IRecipe;
 
-  isRouteComponent = true;
 
   get selectedRecipe() { 
     return this.recipeService.selectedRecipe; 
@@ -20,19 +18,17 @@ export class DetailComponent implements OnInit {
 
   constructor(
     private recipeService: RecipeService,
-    private activatedRoute: ActivatedRoute,
+    private route: ActivatedRoute
     ) { 
-      this.isRouteComponent = this.activatedRoute.snapshot.data.shouldGetRecipe;
+      this.route.params.subscribe(params => {
+        this.recipeService.getRecipeDetails(params['id'])
+          .subscribe((r: IRecipe) => {
+             (this as any).recipeService.selectedRecipe = r;
+          });
+      })
     }
 
   ngOnInit() {
-    console.log(this.activatedRoute.snapshot.params.id);
-    
-    if(this.isRouteComponent){
-      this.recipeService
-        .getRecipeDetails(this.activatedRoute.snapshot.params.id)
-        
-    } 
-  }
 
+  }
 }

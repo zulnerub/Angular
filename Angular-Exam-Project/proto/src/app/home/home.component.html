@@ -1,13 +1,12 @@
 
 
-<div class="col-md-6">
+<div class="col-md-12">
+    <div class="col-md-12 centeredDiv" *ngIf="!isLogged">
+        Please <a routerLink="login centeredDiv">Login</a> to see our great collection of Food Art! Don't hava an account yet? <a routerLink="register centeredDiv">Sign-up</a> right now
+    </div>
 
     <app-list (selectRecipe)="selectRecipeHandler($event)"></app-list>
 
-</div>
-
-<div class="col-md-6">
-    <app-detail [selectedRecipe2]="selectedRecipe"></app-detail>
 </div>
 
 

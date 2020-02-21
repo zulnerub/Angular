@@ -37,7 +37,7 @@ export class UserService {
 
   SignIn(email: string, password: string) {
     return this.angularFireAuth.auth.signInWithEmailAndPassword(email, password)
-      .then((result) => {
+      .then(result => {
         this.router.navigate(['']);
       }).catch((error) => {
         window.alert(error.message)
@@ -46,9 +46,9 @@ export class UserService {
 
   SignUp(email: string, password: string) {
     return this.angularFireAuth.auth.createUserWithEmailAndPassword(email, password)
-      .then((result) => {
-        this.router.navigate(['']);
+      .then(result => {
         this.SetUserData(result.user);
+        this.router.navigate(['']);
       }).catch((error) => {
         window.alert(error.message)
       })
@@ -63,7 +63,6 @@ export class UserService {
  
   SetUserData(user) {
     const userRef: AngularFirestoreDocument<any> = this.angularFirestore.doc(`users/${user.uid}`);
-    console.log(JSON.stringify(user));
     
     const userData: IUser = {
       id: user.localId,
@@ -71,7 +70,6 @@ export class UserService {
       idToken: user.idToken,
       photoUrl: user.photoUrl
     }
-    console.log(userData);
     
     return userRef.set(userData, {
       merge: true

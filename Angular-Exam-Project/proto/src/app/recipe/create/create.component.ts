@@ -31,13 +31,13 @@ export class CreateComponent implements OnInit {
 
  
 
-  ngOnInit() {console.log(this.author);
+  ngOnInit() {
   }
 
   handleCreateRecipe (){
     this.form.value.authorId = this.author.uid;
     this.recipeService.createRecipe(this.form.value);
-    this.router.navigate(['recipes/create'])    ;
+    this.router.navigate(['recipe/create'])    ;
   }
 
   

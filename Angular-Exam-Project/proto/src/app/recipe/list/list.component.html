@@ -1,8 +1,8 @@
 
-<div class="col-lg-10" *ngIf="allRecipes">
-    <div *ngFor="let recipe of allRecipes"  
-        class="list-group-item clearfix mask rgba-white-slight" (click)="selectRecipeDetail(recipe)">
-        <a class="card card-cascade narrower">
+<div class="row">
+<div class="col-xs-12 centeredDiv" *ngIf="allRecipes">
+    <div  class="rgba-white-slight" *ngFor="let recipe of allRecipes">
+        <a class="card card-cascade narrower " routerLink="recipe/details/{{recipe.id}}">
             <div class="view view-cascade overlay">
                 <img class="card-img-top" src={{recipe.imgUrlRecipe}} alt="Card image">      
             </div>
@@ -14,4 +14,4 @@
         </a>
     </div>
 </div>
-
+</div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IRecipe } from '../shared/interfaces/recipe';
+import { UserService } from '../user/user.service';
 
 @Component({
   selector: 'app-home',
@@ -8,12 +9,20 @@ import { IRecipe } from '../shared/interfaces/recipe';
 })
 export class HomeComponent   {
 
-  constructor() { }
+  get isLogged(){
+    return this.userService.isLogged;
+  }
+
+  constructor(
+    private userService: UserService
+  ) { }
 
   selectedRecipe: IRecipe;
 
   selectRecipeHandler(recipe: IRecipe) {
     this.selectedRecipe = recipe;
   }
+
+
 
 }

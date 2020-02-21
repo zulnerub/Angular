@@ -1,42 +1,15 @@
 
     <div *ngIf="selectedRecipe">
-        <div class="row">
-          <div class="col-xs-12">
-            <h1 class="text-center">{{selectedRecipe.title}}</h1>
+        <div class="row centeredDiv">
+          <div class="card card-cascade narrower">
+            <div class="view view-cascade overlay">
+                <img class="card-img-top" src={{selectedRecipe.imgUrlRecipe}} alt="Card image">      
+            </div>
+            <div class="card-body card-body-cascade">
+                <h5 class="pink-text pb-2 pt-1"><i class="fas fa-utensils"></i> {{selectedRecipe.category}}</h5>
+                <h4 class="font-weight-bold card-title">{{selectedRecipe.title}}</h4>
+                <p class="card-text">{{selectedRecipe.summary}}</p>
+            </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <img [src]="selectedRecipe.imgUrlRecipe" alt="" class="img-responsive img-details">
-          </div>
-        </div>
-        <hr>
-        <div class="row">
-          <div class="col-xs-12 cause-description">{{selectedRecipe.summary}}</div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <p class="text-bold amount">
-              <span>${{selectedRecipe.id}}</span>
-              from
-              <span>$</span>{{selectedRecipe.id}}
-            </p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="form-inline"> <!-- <form> -->
-              <div class="form-group">
-                <label class="sr-only" for="donatedAmount"></label>
-                <div class="input-group">
-                  <div class="input-group-addon">$</div>
-                  <input #amountInput type="number" class="form-control" id="donatedAmount" placeholder="Amount">
-                  <div class="input-group-addon">.00</div>
-                </div>
-              </div>
-              <button type="button" class="btn btn-success">Make donation</button>
-              </div>
-          </div>
-        </div>
-        <hr>
-      </div>
+    </div>

@@ -1,10 +1,58 @@
-<div class="col-md-6 like-div">
-    <a class="redirects" routerLink="/login" title="Login Page">
-        Login
-    </a>
+<div class="container" *ngIf="isLogged">
+    <div class="row profile">
+        <div class="col-sm-3"></div>
+		<div class="col-md-6">
+			<div class="profile-sidebar">
+				<div class="profile-userpic">
+					<img src="user.photoUrl" class="img-responsive" alt="">
+				</div>
+				<div class="profile-usertitle">
+					<div class="profile-usertitle-name">
+						{{user.email}}
+					</div>
+				</div>
+				<div class="profile-usermenu">
+					<ul class="nav">
+						<li class="active" >
+							<button (click)="toggleViewUserRecipes()">
+							<i class="glyphicon glyphicon-home"></i>
+							Recipes</button>
+						</li>
+						<li>
+							<a href="#">
+							<i class="glyphicon glyphicon-user"></i>
+							Account Settings </a>
+						</li>
+						<li>
+							<a href="#" target="_blank">
+							<i class="glyphicon glyphicon-ok"></i>
+							Logout </a>
+						</li>
+					</ul>
+				</div>
+			</div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="row" id="userRecipes" *ngIf="showUserRecipes">
+        <div class="rgba-white-slight" *ngFor="let recipe of userRecipes">
+
+            <div class="col-md-6 user-recipe-list"> 
+                <a class="card card-cascade narrower " routerLink="../recipe/details/{{recipe.id}}">
+                <div class="view view-cascade overlay">
+                    <img class="card-img-top" src={{recipe.imgUrlRecipe}} alt="Card image">      
+                </div>
+                <div class="card-body card-body-cascade">
+                    <h5 class="pink-text pb-2 pt-1"><i class="fas fa-utensils"></i> {{recipe.category}}</h5>
+                    <h4 class="font-weight-bold card-title">{{recipe.title}}</h4>
+                    <p class="card-text">{{recipe.summary}}</p>
+                </div>
+				</a>
+				<button class="col-md-3" (click)="updateRecipe(recipe)">Update Recipe</button>
+				<button class="col-md-3" (click)="deleteRecipe(recipe.id)">Delete Recipe</button>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="col-md-6 like-div">
-    <a class="redirects" routerLink="/register" title="Register Page">
-        Register
-    </a>
-</div>
+<br>
+<br>

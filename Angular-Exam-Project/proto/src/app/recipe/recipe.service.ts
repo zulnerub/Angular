@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class RecipeService {
   recipes: IRecipe[];
+  userRecipes: IRecipe[];
 
   readonly selectedRecipe: IRecipe;
 
@@ -18,8 +19,13 @@ export class RecipeService {
 
   
 
-  getRecipes() { 
-    return this.firestore.collection(`recipes`).snapshotChanges();
+  loadRecipe(id?: string) { 
+    return this.firestore.collection(`recipes${id ? `/${id}` : ''}`).snapshotChanges();
+  }
+
+  loadUserRecipes() {
+    return this.firestore.collection('recipes', (r) => r.where('authorId', '==', localStorage.getItem('user')['id'] )).snapshotChanges();
+        
   }
     
 
@@ -32,13 +38,14 @@ export class RecipeService {
   }
 
   updateRecipe(recipe: IRecipe){
-    delete recipe.id
-    this.firestore.doc('recipes/' + recipe.id).update(recipe);
+    this.firestore.doc('recipes/' + recipe.id).set(recipe).then(res => {
+      this.router.navigate(['user']);
+    });
   }
 
-  getRecipeDetails(recipe: IRecipe){
-     this.selectRecipe(recipe);
-    //this.router.navigate(['recipes/details/' + recipe.id]);
+  getRecipeDetails(id: string){
+    return this.firestore.collection<IRecipe>('recipes')
+    .doc<IRecipe>(id).valueChanges();
   }
 
   selectRecipe(recipe: IRecipe){

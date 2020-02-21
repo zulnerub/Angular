@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IRecipe } from 'src/app/shared/interfaces/recipe';
 import { RecipeService } from '../recipe.service';
 
@@ -21,13 +21,12 @@ export class ListComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    
     this.getAllRecipes();
   }
 
 
   getAllRecipes(){
-     this.recipeService.getRecipes().subscribe(data => {
+     this.recipeService.loadRecipe().subscribe(data => {
       this.allRecipes = data.map(e => {
         return {
           id: e.payload.doc.id,
@@ -41,8 +40,12 @@ export class ListComponent implements OnInit {
     });
   }
 
-  selectRecipeDetail(recipe: IRecipe){
-    return this.recipeService.selectRecipe(recipe);
+  
+
+
+
+  loadRecipe(recipe: IRecipe){
+    this.recipeService.selectRecipe(recipe);
   }
  
   create(recipe: IRecipe){

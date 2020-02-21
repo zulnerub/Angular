@@ -7,6 +7,7 @@ import { UserService } from './user/user.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  
   get isReady(): boolean {
     return this.actualUserService.userData !== undefined;
   }
