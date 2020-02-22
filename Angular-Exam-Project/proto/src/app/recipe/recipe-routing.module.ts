@@ -2,7 +2,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { CreateComponent } from './create/create.component';
 import { DetailComponent } from './detail/detail.component';
 import { AuthGard } from '../shared/validators/auth.guard';
-import { UpdateComponent } from './update/update.component';
+import { UpdateComponent } from "./update/updateComponent";
 
 
 const routes: Routes = [

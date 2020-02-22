@@ -5,7 +5,7 @@ import { DetailComponent } from './detail/detail.component';
 import { ListComponent } from './list/list.component';
 import { RecipeRoutingModule } from './recipe-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UpdateComponent } from './update/update.component';
+import { UpdateComponent } from "./update/updateComponent";
 
 
 

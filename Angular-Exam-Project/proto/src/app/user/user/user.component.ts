@@ -3,6 +3,7 @@ import { UserService } from '../user.service';
 import { IUser } from 'src/app/shared/interfaces/user';
 import { RecipeService } from 'src/app/recipe/recipe.service';
 import { IRecipe } from 'src/app/shared/interfaces/recipe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -21,7 +22,8 @@ export class UserComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private recipeService: RecipeService
+    private recipeService: RecipeService,
+    private router: Router
   ) { 
     this.user = this.userService.userData;
   }
@@ -55,8 +57,8 @@ export class UserComponent implements OnInit {
     this.recipeService.deleteRecipe(id);
   }
 
-  updateRecipe(recipe: IRecipe){
-    this.recipeService.updateRecipe(recipe);
+  updateRecipe(rec: IRecipe){
+    this.router.navigate(['recipe/update/' + rec.id]);
 
   }
 

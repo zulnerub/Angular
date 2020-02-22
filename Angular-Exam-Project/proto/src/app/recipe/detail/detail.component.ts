@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { IRecipe } from 'src/app/shared/interfaces/recipe';
 import { RecipeService } from '../recipe.service';
 import { ActivatedRoute } from '@angular/router';

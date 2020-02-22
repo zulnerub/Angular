@@ -6,9 +6,8 @@
             <div class="card-body">
               <h5 class="card-title text-center">Sign Up</h5>
   
-  
               <form class="form-signin" [formGroup]="form"  (ngSubmit)="handleUpdateRecipe()">
-                
+                {{receipe | json}}
                 <div class="form-label-group">
                     <label for="category">Enter recipe category:</label>
                     <input formControlName="category"  type="text" id="category" class="form-control" placeholder="Recipe Category" required autofocus>

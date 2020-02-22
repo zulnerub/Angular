@@ -48,7 +48,7 @@
                     <p class="card-text">{{recipe.summary}}</p>
                 </div>
 				</a>
-				<button class="col-md-3" (click)="updateRecipe(recipe)">Update Recipe</button>
+				<button class="col-md-3" routerLink="../recipe/update/{{recipe.id}}">Update Recipe</button>
 				<button class="col-md-3" (click)="deleteRecipe(recipe.id)">Delete Recipe</button>
             </div>
         </div>
