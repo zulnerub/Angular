@@ -24,6 +24,7 @@ import { AngularFireStorageModule } from "@angular/fire/storage";
 
 import { environment } from '../environments/environment';
 import { UserService } from './user/user.service';
+import { NwComponent } from './nw/nw.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { UserService } from './user/user.service';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    NwComponent
   ],
   imports: [
     BrowserModule,
